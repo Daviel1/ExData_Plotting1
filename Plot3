@@ -1,0 +1,18 @@
+# Reading the relevant data and subset 
+data <- read.table("household_power_consumption.txt", sep = ";", skip = 66637, nrows = 2880)
+
+#Generate plot
+with(data, {
+        plot(V7, type="l",
+             ylab="Global Active Power (kilowatts)", xlab="")
+        lines(V8,col='Red')
+        lines(V9,col='Blue')
+})
+
+#Legend labelling
+legend("topright", col=c("black", "red", "blue"), lty=1, lwd=2, 
+       legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+
+#Generate image
+dev.copy(png, file = "plot3.png", height = 480, width = 480)
+dev.off()
